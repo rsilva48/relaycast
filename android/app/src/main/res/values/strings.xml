@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- English is the default; values-es has the Spanish text. -->
+<resources>
+    <string name="app_name" translatable="false">Relaycast</string>
+    <string name="downloads_channel">Downloads</string>
+</resources>

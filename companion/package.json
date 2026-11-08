@@ -1,0 +1,74 @@
+{
+  "name": "relaycast-companion",
+  "version": "0.3.8",
+  "productName": "Relaycast",
+  "description": "Relaycast companion for Windows: installs and runs the Relaycast server and shares the videos on this PC with the apps.",
+  "private": true,
+  "main": "src/main.cjs",
+  "author": "Relaycast",
+  "scripts": {
+    "start": "electron .",
+    "stage": "node scripts/stage.mjs",
+    "icon": "node scripts/make-icon.mjs",
+    "test": "node --test",
+    "dist": "npm run icon && npm run stage && electron-builder --win nsis --x64 --publish never"
+  },
+  "dependencies": {
+    "qrcode": "^1.5.4"
+  },
+  "devDependencies": {
+    "electron": "^45.2.3",
+    "electron-builder": "^26.18.0",
+    "ffmpeg-static": "^5.2.0",
+    "ffprobe-static": "^3.1.0"
+  },
+  "allowScripts": {
+    "ffmpeg-static@5.3.0": true,
+    "electron-winstaller": false
+  },
+  "build": {
+    "appId": "com.personal.relaycast.companion",
+    "productName": "Relaycast",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "src/**",
+      "build/icon.png",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "stage/server",
+        "to": "server"
+      },
+      {
+        "from": "stage/bin",
+        "to": "bin"
+      }
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.ico",
+      "artifactName": "Relaycast-Setup-${version}.exe"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": true,
+      "allowToChangeInstallationDirectory": true,
+      "include": "build/installer.nsh",
+      "createDesktopShortcut": true,
+      "shortcutName": "Relaycast",
+      "runAfterFinish": true,
+      "deleteAppDataOnUninstall": false
+    }
+  }
+}

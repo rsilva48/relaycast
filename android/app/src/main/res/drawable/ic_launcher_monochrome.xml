@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Themed icon (Android 13+): the system tints this shape. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- The iOS artwork (1024 px) at 84 dp, inside the 66 dp safe zone. -->
+    <group android:scaleX="0.08203" android:scaleY="0.08203" android:translateX="12" android:translateY="12">
+        <path android:fillColor="#FFFFFFFF" android:pathData="M380,262C380,242 400,229 418,239L660,378C678,388 678,414 660,424L418,563C400,573 380,560 380,540Z" />
+        <path android:fillColor="#FFFFFFFF" android:pathData="M342,640H682A26,26 0,0 1,682 692H342A26,26 0,0 1,342 640Z" />
+        <path android:fillColor="#FFFFFFFF" android:pathData="M414,724H610A26,26 0,0 1,610 776H414A26,26 0,0 1,414 724Z" />
+    </group>
+</vector>

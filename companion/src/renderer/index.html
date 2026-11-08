@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; style-src 'self'; script-src 'self'">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Relaycast</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div>
+      <h1>Relaycast</h1>
+      <p id="subtitle">Comparte los vídeos de este PC con tus apps.</p>
+    </div>
+    <span id="badge" class="badge">…</span>
+  </header>
+
+  <nav id="tabs">
+    <button id="tab-server" class="tab active" data-page="server">Servidor</button>
+    <button id="tab-catalog" class="tab" data-page="catalog">Catálogo y metadatos</button>
+  </nav>
+
+  <main id="page-server">
+    <section id="problem" class="notice" hidden></section>
+
+    <section>
+      <h2>1 · Elige tus carpetas de vídeo</h2>
+      <p class="hint">Cada carpeta de primer nivel es una serie (o una película); sus archivos son los episodios. Funciona con MKV, MP4, AVI y más; los subtítulos incrustados o junto al vídeo (.srt, .ass, .vtt) se usan solos.</p>
+      <ul id="folders" class="list"></ul>
+      <div class="row">
+        <button id="add" class="primary">Añadir carpeta…</button>
+        <button id="rescan">Buscar vídeos nuevos</button>
+        <span id="counts" class="muted"></span>
+      </div>
+    </section>
+
+    <section>
+      <h2>2 · Conecta la app</h2>
+      <p class="hint">En la app, abre el asistente de configuración y elige <strong>Escanear código de configuración</strong>; o escribe la dirección a mano. El teléfono y la TV deben estar en la misma red Wi‑Fi que este PC.</p>
+      <div class="connect">
+        <div class="qr"><img id="qr" alt="Código QR de configuración" width="220" height="220"><label class="check"><input id="withAdmin" type="checkbox" checked> Incluir permiso para crear cuenta</label></div>
+        <div class="addresses">
+          <label for="address">Dirección de este PC</label>
+          <select id="address"></select>
+          <div class="row">
+            <button id="copy">Copiar dirección</button>
+            <button id="copyAdmin" title="Sólo para configurar a mano una app nueva">Copiar token de administrador</button>
+          </div>
+          <p class="hint">El QR con permiso de cuenta equivale a una llave: compártelo sólo con quien confíes.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Opciones</h2>
+      <label class="check"><input id="openAtLogin" type="checkbox"> Iniciar con Windows (en segundo plano)</label>
+      <div class="row">
+        <label for="port">Puerto</label>
+        <input id="port" type="number" min="1024" max="65535">
+        <button id="savePort">Guardar y reiniciar</button>
+        <span id="portError" class="error"></span>
+      </div>
+      <div class="row">
+        <button id="restart">Reiniciar el servidor</button>
+        <button id="openData">Abrir carpeta de datos</button>
+        <button id="openLogs">Abrir registros</button>
+      </div>
+      <details>
+        <summary>Registro del servidor</summary>
+        <pre id="log"></pre>
+      </details>
+      <p id="version" class="muted"></p>
+    </section>
+  </main>
+  <main id="page-catalog" hidden>
+    <section class="catalog">
+      <aside>
+        <input id="seriesFilter" type="search" placeholder="Buscar serie o película…" aria-label="Buscar en el catálogo">
+        <ul id="seriesList" class="list pick"></ul>
+        <p id="seriesCount" class="muted"></p>
+      </aside>
+      <div id="editor" hidden>
+        <p id="editorFolder" class="muted"></p>
+        <div class="editor-top">
+          <div class="poster">
+            <img id="poster" alt="Portada" width="150" height="220">
+            <button id="posterPick">Cambiar portada…</button>
+            <button id="posterClear" class="link">Quitar portada propia</button>
+          </div>
+          <div class="fields">
+            <label>Título<input id="f-title" type="text" maxlength="200"></label>
+            <label>Título original<input id="f-titleJp" type="text" maxlength="200"></label>
+            <label>Sinopsis<textarea id="f-synopsis" rows="4" maxlength="4000"></textarea></label>
+            <label>Géneros (separados por comas)<input id="f-genres" type="text"></label>
+          </div>
+        </div>
+        <div class="grid">
+          <label>Tipo<select id="f-mediaType"><option>TV</option><option>Movie</option><option>ONA</option><option>OVA</option><option>Special</option></select></label>
+          <label>Estado<select id="f-status"><option value="finished">Finalizada</option><option value="airing">En emisión</option><option value="upcoming">Próximamente</option></select></label>
+          <label>Clasificación<select id="f-rating"><option value="">—</option><option>G</option><option>PG</option><option>PG-13</option><option>R</option><option>R+</option><option>Rx</option></select></label>
+          <label>Puntuación (0-10)<input id="f-score" type="number" min="0" max="10" step="0.1"></label>
+          <label>Año<input id="f-year" type="number" min="1900" max="2200"></label>
+          <label>Temporada del año<select id="f-season"><option value="">—</option><option value="winter">Invierno</option><option value="spring">Primavera</option><option value="summer">Verano</option><option value="fall">Otoño</option></select></label>
+          <label>Episodios en total<input id="f-totalEpisodes" type="number" min="1" max="10000"></label>
+          <label>Próximo episodio<input id="f-nextEpisodeAt" type="datetime-local"></label>
+        </div>
+        <label class="check"><input id="f-dub" type="checkbox"> Los episodios tienen doblaje</label>
+        <label class="check"><input id="f-adult" type="checkbox"> Contenido para adultos</label>
+
+        <h3>Relación con otras temporadas</h3>
+        <p class="hint">Las series con la misma <strong>franquicia</strong> aparecen como temporadas relacionadas en la app. Si lo dejas vacío, se relacionan por carpeta (Season 1, Season 2…).</p>
+        <div class="grid">
+          <label>Franquicia<input id="f-franchise" type="text" list="franchises" maxlength="80"></label>
+          <datalist id="franchises"></datalist>
+          <label>N.º de temporada (0 = especiales)<input id="f-seasonNumber" type="number" min="0" max="99"></label>
+          <label>Etiqueta de la temporada<input id="f-seasonLabel" type="text" maxlength="60" placeholder="Season 2"></label>
+        </div>
+        <p id="related" class="muted"></p>
+
+        <h3>Episodios</h3>
+        <p class="hint">Intro y outro (m:ss): al reproducir, la app ofrece saltarlos. Si no los pones, se usan los capítulos «Opening» y «Ending» del archivo. <strong>Detectar</strong> los lee del archivo; <strong>Sin salto</strong> desactiva ese salto.</p>
+        <div class="table-wrap"><table id="episodes">
+          <thead><tr><th>N.º</th><th>Título</th><th>Doblaje</th><th>Intro</th><th>Outro</th></tr></thead>
+          <tbody></tbody>
+        </table></div>
+
+        <div class="row sticky">
+          <button id="save" class="primary">Guardar cambios</button>
+          <button id="reset">Restablecer lo que dicen las carpetas</button>
+          <span id="saveStatus" class="muted"></span>
+        </div>
+      </div>
+      <p id="editorEmpty" class="muted">Elige una serie de la lista para editar su información.</p>
+    </section>
+  </main>
+  <script src="catalog.js"></script>
+  <script src="renderer.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.Relaycast" parent="android:style/Theme.DeviceDefault.NoActionBar">
+        <item name="android:windowBackground">@drawable/launch_background</item>
+        <!-- System splash: the icon's artwork in an indigo circle on the app's dark background. -->
+        <item name="android:windowSplashScreenBackground">@color/launch_background</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
+        <item name="android:windowSplashScreenIconBackgroundColor">@color/launch_icon_background</item>
+        <item name="android:statusBarColor">#0B0B12</item>
+        <item name="android:navigationBarColor">#0B0B12</item>
+    </style>
+</resources>

@@ -1,0 +1,40 @@
+{
+  "sourceLanguage" : "es",
+  "strings" : {
+    "NSCameraUsageDescription" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The camera scans the TV's QR codes to link it or to use a profile on this device."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La cámara escanea los códigos QR de la TV para vincularla o para usar un perfil en este dispositivo."
+          }
+        }
+      }
+    },
+    "NSLocalNetworkUsageDescription" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The app connects to the video relay on your local network and looks for Google Cast devices on your Wi‑Fi."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La app se conecta al relay de vídeo dentro de tu red local y busca dispositivos Google Cast en tu Wi‑Fi."
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

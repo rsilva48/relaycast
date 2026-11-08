@@ -1,0 +1,104 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A10000000000000000000020 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000021 /* Assets.xcassets */; };
+		A10000000000000000000101 /* AirPlaySubtitlePlayerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000201 /* AirPlaySubtitlePlayerApp.swift */; };
+		A10000000000000000000102 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000202 /* Models.swift */; };
+		A10000000000000000000103 /* RelayClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000203 /* RelayClient.swift */; };
+		A10000000000000000000104 /* ProfileStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000204 /* ProfileStore.swift */; };
+		A10000000000000000000105 /* SharedViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000205 /* SharedViews.swift */; };
+		A10000000000000000000106 /* CatalogScreens.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000206 /* CatalogScreens.swift */; };
+		A10000000000000000000107 /* EpisodesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000207 /* EpisodesScreen.swift */; };
+		A10000000000000000000108 /* HistoryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000208 /* HistoryScreen.swift */; };
+		A10000000000000000000109 /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000209 /* SettingsScreen.swift */; };
+		A10000000000000000000110 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000210 /* Player.swift */; };
+		A10000000000000000000112 /* Downloads.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000212 /* Downloads.swift */; };
+		A10000000000000000000113 /* ReleaseNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000213 /* ReleaseNotifications.swift */; };
+		A10000000000000000000114 /* RemoteControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000214 /* RemoteControl.swift */; };
+		A10000000000000000000115 /* TVNowPlaying.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000215 /* TVNowPlaying.swift */; };
+		A10000000000000000000116 /* IdentityTransfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000216 /* IdentityTransfer.swift */; };
+		A10000000000000000000118 /* SetupAssistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000218 /* SetupAssistant.swift */; };
+		A10000000000000000000117 /* Cast.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000217 /* Cast.swift */; };
+		A10000000000000000000403 /* GoogleCastDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = A10000000000000000000402 /* GoogleCastDynamic */; };
+		A10000000000000000000311 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000301 /* Localizable.xcstrings */; };
+		A10000000000000000000312 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000302 /* InfoPlist.xcstrings */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A10000000000000000000004 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A10000000000000000000005 /* AirPlaySubtitlePlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AirPlaySubtitlePlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A10000000000000000000021 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A10000000000000000000201 /* AirPlaySubtitlePlayerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirPlaySubtitlePlayerApp.swift; sourceTree = "<group>"; };
+		A10000000000000000000202 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		A10000000000000000000203 /* RelayClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayClient.swift; sourceTree = "<group>"; };
+		A10000000000000000000204 /* ProfileStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStore.swift; sourceTree = "<group>"; };
+		A10000000000000000000205 /* SharedViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedViews.swift; sourceTree = "<group>"; };
+		A10000000000000000000206 /* CatalogScreens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogScreens.swift; sourceTree = "<group>"; };
+		A10000000000000000000207 /* EpisodesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesScreen.swift; sourceTree = "<group>"; };
+		A10000000000000000000208 /* HistoryScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryScreen.swift; sourceTree = "<group>"; };
+		A10000000000000000000209 /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
+		A10000000000000000000210 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		A10000000000000000000212 /* Downloads.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Downloads.swift; sourceTree = "<group>"; };
+		A10000000000000000000213 /* ReleaseNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseNotifications.swift; sourceTree = "<group>"; };
+		A10000000000000000000214 /* RemoteControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteControl.swift; sourceTree = "<group>"; };
+		A10000000000000000000215 /* TVNowPlaying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVNowPlaying.swift; sourceTree = "<group>"; };
+		A10000000000000000000216 /* IdentityTransfer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityTransfer.swift; sourceTree = "<group>"; };
+		A10000000000000000000218 /* SetupAssistant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupAssistant.swift; sourceTree = "<group>"; };
+		A10000000000000000000217 /* Cast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cast.swift; sourceTree = "<group>"; };
+		A10000000000000000000301 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		A10000000000000000000302 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A10000000000000000000006 /* Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (A10000000000000000000403 /* GoogleCastDynamic in Frameworks */,); runOnlyForDeploymentPostprocessing = 0; };
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A10000000000000000000007 = {isa = PBXGroup; children = (A10000000000000000000008 /* AirPlaySubtitlePlayer */, A10000000000000000000009 /* Products */); sourceTree = "<group>"; };
+		A10000000000000000000008 /* AirPlaySubtitlePlayer */ = {isa = PBXGroup; children = (A10000000000000000000201 /* AirPlaySubtitlePlayerApp.swift */, A10000000000000000000202 /* Models.swift */, A10000000000000000000203 /* RelayClient.swift */, A10000000000000000000204 /* ProfileStore.swift */, A10000000000000000000205 /* SharedViews.swift */, A10000000000000000000206 /* CatalogScreens.swift */, A10000000000000000000207 /* EpisodesScreen.swift */, A10000000000000000000208 /* HistoryScreen.swift */, A10000000000000000000209 /* SettingsScreen.swift */, A10000000000000000000210 /* Player.swift */, A10000000000000000000212 /* Downloads.swift */, A10000000000000000000213 /* ReleaseNotifications.swift */, A10000000000000000000214 /* RemoteControl.swift */, A10000000000000000000215 /* TVNowPlaying.swift */, A10000000000000000000216 /* IdentityTransfer.swift */, A10000000000000000000217 /* Cast.swift */, A10000000000000000000218 /* SetupAssistant.swift */, A10000000000000000000004 /* Info.plist */, A10000000000000000000021 /* Assets.xcassets */, A10000000000000000000301 /* Localizable.xcstrings */, A10000000000000000000302 /* InfoPlist.xcstrings */); path = .; sourceTree = "<group>"; };
+		A10000000000000000000009 /* Products */ = {isa = PBXGroup; children = (A10000000000000000000005 /* AirPlaySubtitlePlayer.app */,); name = Products; sourceTree = "<group>"; };
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A10000000000000000000010 /* AirPlaySubtitlePlayer */ = {isa = PBXNativeTarget; buildConfigurationList = A10000000000000000000011 /* Build configuration list for PBXNativeTarget \"AirPlaySubtitlePlayer\" */; buildPhases = (A10000000000000000000012 /* Sources */, A10000000000000000000006 /* Frameworks */, A10000000000000000000013 /* Resources */); buildRules = (); dependencies = (); name = AirPlaySubtitlePlayer; packageProductDependencies = (A10000000000000000000402 /* GoogleCastDynamic */,); productName = AirPlaySubtitlePlayer; productReference = A10000000000000000000005 /* AirPlaySubtitlePlayer.app */; productType = "com.apple.product-type.application"; };
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A10000000000000000000014 /* Project object */ = {isa = PBXProject; attributes = { LastUpgradeCheck = 2600; TargetAttributes = { A10000000000000000000010 = { CreatedOnToolsVersion = 16.0; }; }; }; buildConfigurationList = A10000000000000000000015 /* Build configuration list for PBXProject \"AirPlaySubtitlePlayer\" */; compatibilityVersion = "Xcode 14.0"; developmentRegion = en; hasScannedForEncodings = 0; knownRegions = (en, es, Base,); mainGroup = A10000000000000000000007; packageReferences = (A10000000000000000000401 /* XCRemoteSwiftPackageReference "google-cast-ios-sdk" */,); productRefGroup = A10000000000000000000009 /* Products */; projectDirPath = ""; projectRoot = ""; targets = (A10000000000000000000010 /* AirPlaySubtitlePlayer */,); };
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A10000000000000000000013 /* Resources */ = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (A10000000000000000000020 /* Assets.xcassets in Resources */, A10000000000000000000311 /* Localizable.xcstrings in Resources */, A10000000000000000000312 /* InfoPlist.xcstrings in Resources */,); runOnlyForDeploymentPostprocessing = 0; };
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A10000000000000000000012 /* Sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (A10000000000000000000101 /* AirPlaySubtitlePlayerApp.swift in Sources */, A10000000000000000000102 /* Models.swift in Sources */, A10000000000000000000103 /* RelayClient.swift in Sources */, A10000000000000000000104 /* ProfileStore.swift in Sources */, A10000000000000000000105 /* SharedViews.swift in Sources */, A10000000000000000000106 /* CatalogScreens.swift in Sources */, A10000000000000000000107 /* EpisodesScreen.swift in Sources */, A10000000000000000000108 /* HistoryScreen.swift in Sources */, A10000000000000000000109 /* SettingsScreen.swift in Sources */, A10000000000000000000110 /* Player.swift in Sources */, A10000000000000000000112 /* Downloads.swift in Sources */, A10000000000000000000113 /* ReleaseNotifications.swift in Sources */, A10000000000000000000114 /* RemoteControl.swift in Sources */, A10000000000000000000115 /* TVNowPlaying.swift in Sources */, A10000000000000000000116 /* IdentityTransfer.swift in Sources */, A10000000000000000000117 /* Cast.swift in Sources */, A10000000000000000000118 /* SetupAssistant.swift in Sources */,); runOnlyForDeploymentPostprocessing = 0; };
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		A10000000000000000000016 /* Debug */ = {isa = XCBuildConfiguration; buildSettings = { ALWAYS_SEARCH_USER_PATHS = NO; CLANG_ENABLE_MODULES = YES; CLANG_ENABLE_OBJC_ARC = YES; DEBUG_INFORMATION_FORMAT = dwarf; GCC_C_LANGUAGE_STANDARD = gnu17; GCC_NO_COMMON_BLOCKS = YES; GCC_WARN_64_TO_32_BIT_CONVERSION = YES; GCC_WARN_UNDECLARED_SELECTOR = YES; IPHONEOS_DEPLOYMENT_TARGET = 26.0; SDKROOT = iphoneos; SWIFT_VERSION = 5.0; }; name = Debug; };
+		A10000000000000000000017 /* Release */ = {isa = XCBuildConfiguration; buildSettings = { ALWAYS_SEARCH_USER_PATHS = NO; CLANG_ENABLE_MODULES = YES; CLANG_ENABLE_OBJC_ARC = YES; DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym"; GCC_C_LANGUAGE_STANDARD = gnu17; GCC_NO_COMMON_BLOCKS = YES; GCC_WARN_64_TO_32_BIT_CONVERSION = YES; GCC_WARN_UNDECLARED_SELECTOR = YES; IPHONEOS_DEPLOYMENT_TARGET = 26.0; SDKROOT = iphoneos; SWIFT_COMPILATION_MODE = wholemodule; SWIFT_OPTIMIZATION_LEVEL = "-O"; SWIFT_VERSION = 5.0; }; name = Release; };
+		A10000000000000000000018 /* Debug */ = {isa = XCBuildConfiguration; buildSettings = { ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon; ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO; CODE_SIGN_STYLE = Automatic; CURRENT_PROJECT_VERSION = 1; GENERATE_INFOPLIST_FILE = NO; INFOPLIST_FILE = Info.plist; LD_RUNPATH_SEARCH_PATHS = ("$(inherited)", "@executable_path/Frameworks", ); MARKETING_VERSION = 0.3.8; PRODUCT_BUNDLE_IDENTIFIER = com.personal.airplaysubtitleplayer; PRODUCT_NAME = "$(TARGET_NAME)"; TARGETED_DEVICE_FAMILY = "1,2"; }; name = Debug; };
+		A10000000000000000000019 /* Release */ = {isa = XCBuildConfiguration; buildSettings = { ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon; ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO; CODE_SIGN_STYLE = Automatic; CURRENT_PROJECT_VERSION = 1; GENERATE_INFOPLIST_FILE = NO; INFOPLIST_FILE = Info.plist; LD_RUNPATH_SEARCH_PATHS = ("$(inherited)", "@executable_path/Frameworks", ); MARKETING_VERSION = 0.3.8; PRODUCT_BUNDLE_IDENTIFIER = com.personal.airplaysubtitleplayer; PRODUCT_NAME = "$(TARGET_NAME)"; TARGETED_DEVICE_FAMILY = "1,2"; }; name = Release; };
+/* End XCBuildConfiguration section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A10000000000000000000401 /* XCRemoteSwiftPackageReference "google-cast-ios-sdk" */ = {isa = XCRemoteSwiftPackageReference; repositoryURL = "https://github.com/googlecast/google-cast-ios-sdk"; requirement = {kind = exactVersion; version = 4.8.6; }; };
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A10000000000000000000402 /* GoogleCastDynamic */ = {isa = XCSwiftPackageProductDependency; package = A10000000000000000000401 /* XCRemoteSwiftPackageReference "google-cast-ios-sdk" */; productName = GoogleCastDynamic; };
+/* End XCSwiftPackageProductDependency section */
+
+/* Begin XCConfigurationList section */
+		A10000000000000000000011 /* Build configuration list for PBXNativeTarget \"AirPlaySubtitlePlayer\" */ = {isa = XCConfigurationList; buildConfigurations = (A10000000000000000000018 /* Debug */, A10000000000000000000019 /* Release */,); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+		A10000000000000000000015 /* Build configuration list for PBXProject \"AirPlaySubtitlePlayer\" */ = {isa = XCConfigurationList; buildConfigurations = (A10000000000000000000016 /* Debug */, A10000000000000000000017 /* Release */,); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+/* End XCConfigurationList section */
+	};
+	rootObject = A10000000000000000000014 /* Project object */;
+}
