@@ -1,0 +1,17 @@
+server/node_modules/
+server/data/
+# Local secrets, such as the server's .env.
+.env
+*.jks
+*.keystore
+*.p12
+*.pfx
+# Session handoff notes for future assistant sessions (local only).
+.session/
+# Setup QR images (they hold the administrator token).
+configuracion-relaycast*.png
+# Companion build output and generated files.
+companion/node_modules/
+companion/dist/
+companion/stage/
+companion/build/icon.*

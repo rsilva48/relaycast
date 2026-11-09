@@ -1,0 +1,389 @@
+name: Build and release (Relaycast app, Relay Server)
+
+on:
+  workflow_dispatch:
+  # Path filters are not evaluated for tag pushes; the `changes` job decides
+  # what each release contains by diffing against the previous version tag.
+  push:
+    tags:
+      - 'v*'
+  pull_request:
+    paths:
+      - 'ios/**'
+      - 'server/**'
+      - 'android/**'
+      - '.github/workflows/build-and-release.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  changes:
+    name: Detect changes (iOS, Android, server)
+    runs-on: ubuntu-latest
+    outputs:
+      app: ${{ steps.diff.outputs.app }}
+      server: ${{ steps.diff.outputs.server }}
+      android: ${{ steps.diff.outputs.android }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Compare with the previous version
+        id: diff
+        shell: bash
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          PR_BASE: ${{ github.event.pull_request.base.sha }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          case "$EVENT_NAME" in
+            workflow_dispatch) base='' ;;
+            pull_request) base="$PR_BASE" ;;
+            *)
+              # The newest earlier version that was actually published: a tag
+              # whose build failed has no release, and its changes must still
+              # reach the next one.
+              base=''
+              for tag in $(git tag --merged "${GITHUB_SHA}^" --list 'v[0-9]*' --sort=-v:refname | head -n 20); do
+                if gh release view "$tag" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then base="$tag"; break; fi
+              done ;;
+          esac
+          if [[ "$GITHUB_REF_TYPE" == tag ]] && gh release view "$GITHUB_REF_NAME" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            # Re-pushed tags (for example after rewriting history) keep their
+            # existing release instead of rebuilding and republishing it.
+            app=false; server=false; android=false
+            printf 'Release %s already exists; nothing to publish.\n' "$GITHUB_REF_NAME" >> "$GITHUB_STEP_SUMMARY"
+          elif [[ "$EVENT_NAME" == workflow_dispatch || -z "$base" ]]; then
+            app=true; server=true; android=true
+          else
+            # Ignores manifests whose only change is the synced version number.
+            result=$(node scripts/changed-components.mjs "$base" "$GITHUB_SHA")
+            app=$(sed -n 's/^app=//p' <<<"$result")
+            server=$(sed -n 's/^server=//p' <<<"$result")
+            android=$(sed -n 's/^android=//p' <<<"$result")
+          fi
+          printf 'Base: %s\nApp changed: %s\nServer changed: %s\n' "${base:-none}" "$app" "$server" >> "$GITHUB_STEP_SUMMARY"
+          printf 'app=%s\nserver=%s\n' "$app" "$server" >> "$GITHUB_OUTPUT"
+          printf 'android=%s\n' "$android" >> "$GITHUB_OUTPUT"
+
+  server-check:
+    name: Server · test and audit (Node 24)
+    needs: changes
+    if: needs.changes.outputs.server == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: server/.nvmrc
+          cache: npm
+          cache-dependency-path: server/package-lock.json
+      - name: Install, test and audit the server
+        working-directory: server
+        run: |
+          npm ci --ignore-scripts
+          node --check server.mjs
+          npm test
+          npm audit --omit=dev
+
+  build:
+    name: iOS app · IPA (iPhone and iPad)
+    needs: changes
+    if: needs.changes.outputs.app == 'true'
+    # The Xcode 27 image has the iOS 27 SDK, needed for the iPhone Duo (foldable).
+    runs-on: xcode-27
+    defaults:
+      run:
+        working-directory: ios
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Resolve app version
+        id: version
+        shell: bash
+        run: |
+          # version.txt is the source of truth; a release tag must match it.
+          version=$(tr -d '[:space:]' < ../version.txt)
+          [[ "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] || { echo "version.txt has an invalid version: $version"; exit 1; }
+          if [[ "${GITHUB_REF_TYPE}" == "tag" ]]; then
+            [[ "$GITHUB_REF_NAME" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]] || { echo 'Invalid semantic release tag'; exit 1; }
+            if [[ "${GITHUB_REF_NAME#v}" != "$version" ]]; then
+              echo "::warning::Tag $GITHUB_REF_NAME does not match version.txt ($version); using the tag."
+              version="${GITHUB_REF_NAME#v}"
+            fi
+          fi
+          printf 'version=%s\n' "$version" >> "$GITHUB_OUTPUT"
+      # Xcode 27.1 is the first with the iPhone Duo (foldable) SDK; the image
+      # also has 27.0 and a 27.2 release candidate. Set the repository
+      # variable XCODE_VERSION (e.g. 27.2) to use another installed version.
+      - name: Select Xcode
+        shell: bash
+        env:
+          XCODE_VERSION: ${{ vars.XCODE_VERSION || '27.1' }}
+        run: |
+          set -euo pipefail
+          selected="/Applications/Xcode_${XCODE_VERSION}.app"
+          [[ -d "$selected" ]] || { echo "Xcode $XCODE_VERSION is not installed on this runner"; ls -d /Applications/Xcode*.app; exit 1; }
+          sudo xcode-select -s "$selected/Contents/Developer"
+          xcodebuild -version
+          xcodebuild -showsdks | grep -i 'iphoneos' || true
+          echo "iOS SDK: $(xcrun --sdk iphoneos --show-sdk-version)"
+          xcrun simctl list devices available | grep -i 'iPhone Duo' || echo 'No iPhone Duo simulator on this image'
+      - name: Build the iOS app (Release, for devices)
+        run: >-
+          xcodebuild
+          -project Relaycast.xcodeproj
+          -scheme Relaycast
+          -configuration Release
+          -sdk iphoneos
+          -destination 'generic/platform=iOS'
+          -derivedDataPath "$RUNNER_TEMP/DerivedData"
+          -archivePath "$RUNNER_TEMP/Relaycast.xcarchive"
+          MARKETING_VERSION="${{ steps.version.outputs.version }}"
+          CURRENT_PROJECT_VERSION="${{ github.run_number }}"
+          CODE_SIGNING_ALLOWED=NO
+          archive
+      - name: Preserve archive and privacy inputs for store review
+        run: |
+          set -euo pipefail
+          python3 ../scripts/privacy-inputs.py \
+            "$RUNNER_TEMP/Relaycast.xcarchive/Products/Applications/Relaycast.app" \
+            "$RUNNER_TEMP/privacy-inputs" \
+            "$RUNNER_TEMP/DerivedData/SourcePackages/artifacts"
+          ditto -c -k --keepParent "$RUNNER_TEMP/Relaycast.xcarchive" "$RUNNER_TEMP/Relaycast.xcarchive.zip"
+          echo 'App Store privacy label pending: generate and review the aggregate privacy report in Xcode Organizer (docs/store-release.md).' >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: ios-archive
+          path: ${{ runner.temp }}/Relaycast.xcarchive.zip
+          if-no-files-found: error
+          retention-days: 7
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: ios-privacy-inputs
+          path: ${{ runner.temp }}/privacy-inputs
+          if-no-files-found: error
+          retention-days: 7
+      - name: Package the IPA (no certificate; signed later for the store)
+        run: |
+          mkdir -p "$RUNNER_TEMP/ipa/Payload"
+          ditto "$RUNNER_TEMP/Relaycast.xcarchive/Products/Applications/Relaycast.app" "$RUNNER_TEMP/ipa/Payload/Relaycast.app"
+          app="$RUNNER_TEMP/ipa/Payload/Relaycast.app"
+          plutil -lint "$app/Info.plist"
+          executable=$(/usr/libexec/PlistBuddy -c 'Print :CFBundleExecutable' "$app/Info.plist")
+          /usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' "$app/Info.plist"
+          /usr/libexec/PlistBuddy -c 'Print :CFBundleVersion' "$app/Info.plist"
+          /usr/libexec/PlistBuddy -c 'Print :DTSDKName' "$app/Info.plist"
+          test "$(/usr/libexec/PlistBuddy -c 'Print :CFBundleShortVersionString' "$app/Info.plist")" = '${{ steps.version.outputs.version }}'
+          test -n "$executable"
+          test -f "$app/$executable"
+          # The app loads GoogleCast.framework through @rpath: without
+          # @executable_path/Frameworks among its run paths, an installed copy
+          # stops at launch with "no LC_RPATH's found".
+          rpaths=$(otool -l "$app/$executable" | grep -A2 LC_RPATH || true)
+          echo "$rpaths"
+          grep -q '@executable_path/Frameworks' <<<"$rpaths"
+          # Ad-hoc signatures (no certificate) on every framework and on the
+          # app, as an Xcode-signed IPA has: CODE_SIGNING_ALLOWED=NO leaves no
+          # signature at all. The signing step replaces them with the distribution certificate's.
+          find "$app/Frameworks" -maxdepth 1 \( -name '*.framework' -o -name '*.dylib' \) -print0 2>/dev/null |
+            xargs -0 -I{} codesign --force --sign - --timestamp=none {}
+          codesign --force --sign - --timestamp=none "$app"
+          codesign --verify --deep --strict --verbose=2 "$app"
+          codesign -dv "$app/Frameworks/GoogleCast.framework" 2>&1 | grep -E 'Identifier|Signature'
+          cd "$RUNNER_TEMP/ipa"
+          zip -qry "$RUNNER_TEMP/Relaycast.ipa" Payload
+      - name: Upload the IPA
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: ios-app
+          path: |
+            ${{ runner.temp }}/Relaycast.ipa
+          if-no-files-found: error
+          retention-days: 7
+      # The same app for the iOS Simulator (arm64, unsigned), zipped with the
+      # .app at the top: what simulator services such as VibeView take (its
+      # iPhone Duo runs iOS 27.1). Optional: a failure here never blocks the
+      # device build or the release.
+      - name: Build for the iOS Simulator (arm64)
+        id: simulator
+        continue-on-error: true
+        run: |
+          set -euo pipefail
+          xcodebuild \
+            -project Relaycast.xcodeproj \
+            -scheme Relaycast \
+            -configuration Release \
+            -sdk iphonesimulator \
+            -destination 'generic/platform=iOS Simulator' \
+            -derivedDataPath "$RUNNER_TEMP/DerivedDataSim" \
+            ARCHS=arm64 ONLY_ACTIVE_ARCH=NO \
+            MARKETING_VERSION="${{ steps.version.outputs.version }}" \
+            CURRENT_PROJECT_VERSION="${{ github.run_number }}" \
+            CODE_SIGNING_ALLOWED=NO \
+            build
+          app="$RUNNER_TEMP/DerivedDataSim/Build/Products/Release-iphonesimulator/Relaycast.app"
+          lipo -info "$app/Relaycast"
+          ditto -c -k --keepParent "$app" "$RUNNER_TEMP/Relaycast-simulator.zip"
+          ls -lh "$RUNNER_TEMP/Relaycast-simulator.zip"
+      - name: Upload the Simulator build
+        if: steps.simulator.outcome == 'success'
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: ios-simulator
+          path: ${{ runner.temp }}/Relaycast-simulator.zip
+          if-no-files-found: error
+          retention-days: 7
+
+  android-build:
+    name: Android app · APK (phone, tablet and TV)
+    needs: changes
+    if: needs.changes.outputs.android == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@b843ebf9b913146b38da2eaa7aeddf76074ae1ad # v6.1.0
+        with:
+          distribution: temurin
+          java-version: '21'
+      # Keeps the Gradle distribution, the dependencies and the build cache
+      # (org.gradle.caching) between runs, also across Gradle/AGP upgrades:
+      # without it every run downloaded Gradle and rebuilt all tasks. Tag
+      # builds write it too (by default only the default branch does).
+      # The configuration cache is saved too only with an encryption key: set
+      # the repository secret GRADLE_ENCRYPTION_KEY (openssl rand -base64 16).
+      # Without it, "no cached configuration is available" is expected.
+      - uses: gradle/actions/setup-gradle@8da46b539cd8fe6ab27ca75128919a18d757604c # v6.4.1
+        with:
+          cache-read-only: ${{ github.event_name == 'pull_request' }}
+          cache-encryption-key: ${{ secrets.GRADLE_ENCRYPTION_KEY }}
+      - name: Install Android SDK
+        # Since API 37, platforms are published with a minor version.
+        run: "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager 'platforms;android-37.0'"
+      - name: Build the APK
+        working-directory: android
+        shell: bash
+        env:
+          KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: |
+          set -euo pipefail
+          chmod +x gradlew
+          if [[ "$GITHUB_REF_TYPE" == tag ]]; then
+            [[ "$GITHUB_REF_NAME" == "v$(tr -d '[:space:]' < ../version.txt)" ]] || { echo 'Tag and version.txt do not match'; exit 1; }
+            [[ -n "$KEYSTORE_BASE64" && -n "$ANDROID_KEYSTORE_PASSWORD" && -n "$ANDROID_KEY_ALIAS" && -n "$ANDROID_KEY_PASSWORD" ]] || { echo 'Android signing secrets are required for releases'; exit 1; }
+            export ANDROID_KEYSTORE_PATH="$RUNNER_TEMP/android-release.keystore"
+            printf '%s' "$KEYSTORE_BASE64" | base64 --decode > "$ANDROID_KEYSTORE_PATH"
+            trap 'rm -f "$ANDROID_KEYSTORE_PATH"' EXIT
+            build=release
+          else
+            build=debug
+          fi
+          ./gradlew "assemble${build^}"
+          cp "app/build/outputs/apk/$build/app-$build.apk" "$RUNNER_TEMP/Relaycast.apk"
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: android-app
+          path: |
+            ${{ runner.temp }}/Relaycast.apk
+          if-no-files-found: error
+          retention-days: 7
+
+  release:
+    name: Publish the release
+    needs: [changes, build, server-check, android-build]
+    # Skipped jobs count as success so server-only and app-only tags publish too.
+    if: >-
+      ${{ !cancelled()
+      && github.event_name == 'push' && github.ref_type == 'tag'
+      && needs.changes.result == 'success'
+      && (needs.changes.outputs.app == 'true' || needs.changes.outputs.server == 'true' || needs.changes.outputs.android == 'true')
+      && contains(fromJSON('["success","skipped"]'), needs.build.result)
+      && contains(fromJSON('["success","skipped"]'), needs.server-check.result)
+      && contains(fromJSON('["success","skipped"]'), needs.android-build.result) }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      HAS_APP: ${{ needs.changes.outputs.app }}
+      HAS_SERVER: ${{ needs.changes.outputs.server }}
+      HAS_ANDROID: ${{ needs.changes.outputs.android }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        if: env.HAS_APP == 'true'
+        with:
+          name: ios-app
+          path: release-assets
+      # Optional: present only when the Simulator build succeeded.
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        if: env.HAS_APP == 'true'
+        continue-on-error: true
+        with:
+          name: ios-simulator
+          path: release-assets
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        if: env.HAS_ANDROID == 'true'
+        with:
+          name: android-app
+          path: release-assets
+      - name: Write the release notes from the commits
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          # App releases list everything since the previous release with an IPA.
+          if [[ "$HAS_APP" == true ]]; then
+            filter='select(any(.assets[]; .name == "Relaycast.ipa"))'
+          else
+            filter='.'
+          fi
+          previous=''
+          while IFS= read -r candidate; do
+            [[ "$candidate" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]] || continue
+            if git rev-parse -q --verify "refs/tags/$candidate" >/dev/null && git merge-base --is-ancestor "refs/tags/$candidate" "${GITHUB_SHA}^"; then
+              previous="$candidate"
+              break
+            fi
+          done < <(gh api --paginate "repos/$GITHUB_REPOSITORY/releases" --jq ".[] | select(.draft == false and .prerelease == false) | $filter | .tag_name")
+          range="$GITHUB_SHA"
+          [[ -n "$previous" ]] && range="$previous..$GITHUB_SHA"
+          section() {
+            local title="$1"; shift
+            local lines
+            lines=$(git log --no-merges --format='- %s (`%h`)' "$range" -- "$@")
+            if [[ -n "$lines" ]]; then printf '### %s\n\n%s\n\n' "$title" "$lines" >> release-notes.md; fi
+          }
+          : > release-notes.md
+          printf '## Cambios\n\n' >> release-notes.md
+          section 'App iOS' ios
+          section 'Android' android
+          section 'Servidor' server
+          section 'Companion de Windows' companion
+          section 'Repositorio y documentación' . ':(exclude)ios' ':(exclude)android' ':(exclude)server' ':(exclude)companion'
+          cat release-notes.md >> "$GITHUB_STEP_SUMMARY"
+      # Releases without an app build are never marked latest.
+      - uses: softprops/action-gh-release@efb35369e0ad2afab669f228072c1b0d510eae64 # v3.0.3
+        with:
+          name: ${{ github.ref_name }}
+          files: ${{ (env.HAS_APP == 'true' || env.HAS_ANDROID == 'true') && 'release-assets/*' || '' }}
+          body_path: release-notes.md
+          fail_on_unmatched_files: true
+          make_latest: ${{ env.HAS_APP == 'true' && 'true' || 'false' }}

@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Relaycast: descarga para Windows</title>
+  <meta name="description" content="Relaycast es un reproductor de vídeo para tus propios archivos. Descarga el companion para Windows, que instala el Relay Server y comparte tus carpetas con las apps.">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f5f5fa; --panel: #ffffff; --line: #dedee8; --text: #1a1a24; --muted: #62627a;
+      --accent: #5a58e8; --accent-text: #ffffff;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root { --bg: #14141a; --panel: #1d1d26; --line: #2c2c38; --text: #ececf2; --muted: #9a9aab; --accent: #6c6bf2; }
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.55 system-ui, "Segoe UI", sans-serif; }
+    main { max-width: 680px; margin: 0 auto; padding: 48px 16px 64px; }
+    h1 { margin: 0 0 8px; font-size: 2rem; letter-spacing: -0.01em; }
+    h2 { margin: 36px 0 8px; font-size: 1.1rem; }
+    p { margin: 8px 0; }
+    .lead { color: var(--muted); font-size: 1.1rem; }
+    .card { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 22px; margin-top: 28px; }
+    .button { display: inline-block; background: var(--accent); color: var(--accent-text); text-decoration: none; font-weight: 600; padding: 12px 22px; border-radius: 12px; }
+    .button:hover { filter: brightness(1.1); }
+    .button:focus-visible, a:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+    .meta { color: var(--muted); font-size: 0.9rem; margin-top: 10px; }
+    ol { padding-left: 1.3rem; }
+    li { margin: 6px 0; }
+    a { color: var(--accent); }
+    code { background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 1px 6px; font-size: 0.9em; }
+    footer { margin-top: 40px; color: var(--muted); font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Relaycast</h1>
+    <p class="lead">Un reproductor de vídeo para tus propios archivos. Las apps (iPhone, iPad, Android y Android TV) reproducen las series y películas que guardas en tu PC, con subtítulos, varias pistas de audio, progreso compartido y envío a la TV.</p>
+
+    <section class="card" aria-labelledby="download">
+      <h2 id="download" style="margin-top:0">Companion para Windows</h2>
+      <p>Instala el Relay Server y comparte tus carpetas de vídeo con las apps. Incluye <code>ffmpeg</code>: no hay nada más que instalar.</p>
+      <p><a id="download-link" class="button" href="https://github.com/rsilva48/relaycast/releases/latest">Descargar el instalador</a></p>
+      <p id="download-meta" class="meta">Windows 10 u 11, 64 bits.</p>
+    </section>
+
+    <h2>Cómo se usa</h2>
+    <ol>
+      <li>Ejecuta el instalador. Pide permisos de administrador para abrir el Firewall de Windows en redes privadas, para que el teléfono y la TV lleguen al PC.</li>
+      <li>En la ventana de Relaycast, pulsa <strong>Añadir carpeta…</strong> y elige donde guardas tus series y películas.</li>
+      <li>En la app, abre el asistente de configuración inicial y elige <strong>Escanear código de configuración</strong>: apunta al QR de la ventana.</li>
+      <li>En la pestaña <strong>Catálogo y metadatos</strong> puedes editar títulos, portadas, temporadas, relaciones e intro/outro de cada episodio.</li>
+    </ol>
+    <p class="meta">El instalador no está firmado: la primera vez, SmartScreen mostrará un aviso. Elige <strong>Más información › Ejecutar de todos modos</strong>.</p>
+
+    <footer>El companion guarda tus datos en <code>%APPDATA%\Relaycast</code> y no se borran al desinstalar. · <a href="privacy.html">Política de privacidad</a> · <a href="https://github.com/rsilva48/relaycast/blob/main/LICENSE">Licencia Apache 2.0</a></footer>
+  </main>
+
+  <script>
+    // Points the button at the newest release that carries the installer.
+    (async () => {
+      try {
+        const response = await fetch('https://api.github.com/repos/rsilva48/relaycast/releases?per_page=20', { headers: { Accept: 'application/vnd.github+json' } });
+        if (!response.ok) return;
+        for (const release of await response.json()) {
+          if (release.draft || release.prerelease) continue;
+          const asset = release.assets.find((item) => /^Relaycast-Setup-.+\.exe$/.test(item.name) && item.state === 'uploaded');
+          if (!asset) continue;
+          document.getElementById('download-link').href = asset.browser_download_url;
+          const megabytes = Math.round(asset.size / 1048576);
+          document.getElementById('download-meta').textContent = `Versión ${release.tag_name.replace(/^v/, '')} · ${megabytes} MB · Windows 10 u 11, 64 bits.`;
+          return;
+        }
+      } catch { /* the link keeps pointing at the releases page */ }
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A10000000000000000000313 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000303 /* PrivacyInfo.xcprivacy */; };
+		A10000000000000000000020 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000021 /* Assets.xcassets */; };
+		A10000000000000000000101 /* RelaycastApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000201 /* RelaycastApp.swift */; };
+		A10000000000000000000102 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000202 /* Models.swift */; };
+		A10000000000000000000103 /* RelayClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000203 /* RelayClient.swift */; };
+		A10000000000000000000104 /* ProfileStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000204 /* ProfileStore.swift */; };
+		A10000000000000000000105 /* SharedViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000205 /* SharedViews.swift */; };
+		A10000000000000000000106 /* CatalogScreens.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000206 /* CatalogScreens.swift */; };
+		A10000000000000000000107 /* EpisodesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000207 /* EpisodesScreen.swift */; };
+		A10000000000000000000108 /* HistoryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000208 /* HistoryScreen.swift */; };
+		A10000000000000000000109 /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000209 /* SettingsScreen.swift */; };
+		A10000000000000000000110 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000210 /* Player.swift */; };
+		A10000000000000000000112 /* Downloads.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000212 /* Downloads.swift */; };
+		A10000000000000000000113 /* ReleaseNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000213 /* ReleaseNotifications.swift */; };
+		A10000000000000000000114 /* RemoteControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000214 /* RemoteControl.swift */; };
+		A10000000000000000000115 /* TVNowPlaying.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000215 /* TVNowPlaying.swift */; };
+		A10000000000000000000116 /* IdentityTransfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000216 /* IdentityTransfer.swift */; };
+		A10000000000000000000118 /* SetupAssistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000218 /* SetupAssistant.swift */; };
+		A10000000000000000000117 /* Cast.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000217 /* Cast.swift */; };
+		A10000000000000000000119 /* MediaSources.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000219 /* MediaSources.swift */; };
+		A10000000000000000000120 /* SourcesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000220 /* SourcesScreen.swift */; };
+		A10000000000000000000403 /* GoogleCastDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = A10000000000000000000402 /* GoogleCastDynamic */; };
+		A10000000000000000000406 /* SMBClient in Frameworks */ = {isa = PBXBuildFile; productRef = A10000000000000000000405 /* SMBClient */; };
+		A10000000000000000000409 /* Citadel in Frameworks */ = {isa = PBXBuildFile; productRef = A10000000000000000000408 /* Citadel */; };
+		A10000000000000000000412 /* NIOSSH in Frameworks */ = {isa = PBXBuildFile; productRef = A10000000000000000000411 /* NIOSSH */; };
+		A10000000000000000000311 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000301 /* Localizable.xcstrings */; };
+		A10000000000000000000312 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000302 /* InfoPlist.xcstrings */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A10000000000000000000303 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		A10000000000000000000004 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A10000000000000000000005 /* Relaycast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Relaycast.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A10000000000000000000021 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A10000000000000000000201 /* RelaycastApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelaycastApp.swift; sourceTree = "<group>"; };
+		A10000000000000000000202 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		A10000000000000000000203 /* RelayClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayClient.swift; sourceTree = "<group>"; };
+		A10000000000000000000204 /* ProfileStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStore.swift; sourceTree = "<group>"; };
+		A10000000000000000000205 /* SharedViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedViews.swift; sourceTree = "<group>"; };
+		A10000000000000000000206 /* CatalogScreens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogScreens.swift; sourceTree = "<group>"; };
+		A10000000000000000000207 /* EpisodesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesScreen.swift; sourceTree = "<group>"; };
+		A10000000000000000000208 /* HistoryScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryScreen.swift; sourceTree = "<group>"; };
+		A10000000000000000000209 /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
+		A10000000000000000000210 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		A10000000000000000000212 /* Downloads.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Downloads.swift; sourceTree = "<group>"; };
+		A10000000000000000000213 /* ReleaseNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseNotifications.swift; sourceTree = "<group>"; };
+		A10000000000000000000214 /* RemoteControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteControl.swift; sourceTree = "<group>"; };
+		A10000000000000000000215 /* TVNowPlaying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVNowPlaying.swift; sourceTree = "<group>"; };
+		A10000000000000000000216 /* IdentityTransfer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityTransfer.swift; sourceTree = "<group>"; };
+		A10000000000000000000218 /* SetupAssistant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupAssistant.swift; sourceTree = "<group>"; };
+		A10000000000000000000217 /* Cast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cast.swift; sourceTree = "<group>"; };
+		A10000000000000000000219 /* MediaSources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaSources.swift; sourceTree = "<group>"; };
+		A10000000000000000000220 /* SourcesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourcesScreen.swift; sourceTree = "<group>"; };
+		A10000000000000000000301 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		A10000000000000000000302 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A10000000000000000000006 /* Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (A10000000000000000000403 /* GoogleCastDynamic in Frameworks */, A10000000000000000000406 /* SMBClient in Frameworks */, A10000000000000000000409 /* Citadel in Frameworks */, A10000000000000000000412 /* NIOSSH in Frameworks */,); runOnlyForDeploymentPostprocessing = 0; };
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A10000000000000000000007 = {isa = PBXGroup; children = (A10000000000000000000008 /* Relaycast */, A10000000000000000000009 /* Products */); sourceTree = "<group>"; };
+		A10000000000000000000008 /* Relaycast */ = {isa = PBXGroup; children = (A10000000000000000000303 /* PrivacyInfo.xcprivacy */, A10000000000000000000201 /* RelaycastApp.swift */, A10000000000000000000202 /* Models.swift */, A10000000000000000000203 /* RelayClient.swift */, A10000000000000000000204 /* ProfileStore.swift */, A10000000000000000000205 /* SharedViews.swift */, A10000000000000000000206 /* CatalogScreens.swift */, A10000000000000000000207 /* EpisodesScreen.swift */, A10000000000000000000208 /* HistoryScreen.swift */, A10000000000000000000209 /* SettingsScreen.swift */, A10000000000000000000210 /* Player.swift */, A10000000000000000000212 /* Downloads.swift */, A10000000000000000000213 /* ReleaseNotifications.swift */, A10000000000000000000214 /* RemoteControl.swift */, A10000000000000000000215 /* TVNowPlaying.swift */, A10000000000000000000216 /* IdentityTransfer.swift */, A10000000000000000000217 /* Cast.swift */, A10000000000000000000219 /* MediaSources.swift */, A10000000000000000000220 /* SourcesScreen.swift */, A10000000000000000000218 /* SetupAssistant.swift */, A10000000000000000000004 /* Info.plist */, A10000000000000000000021 /* Assets.xcassets */, A10000000000000000000301 /* Localizable.xcstrings */, A10000000000000000000302 /* InfoPlist.xcstrings */); path = .; sourceTree = "<group>"; };
+		A10000000000000000000009 /* Products */ = {isa = PBXGroup; children = (A10000000000000000000005 /* Relaycast.app */,); name = Products; sourceTree = "<group>"; };
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A10000000000000000000010 /* Relaycast */ = {isa = PBXNativeTarget; buildConfigurationList = A10000000000000000000011 /* Build configuration list for PBXNativeTarget \"Relaycast\" */; buildPhases = (A10000000000000000000012 /* Sources */, A10000000000000000000006 /* Frameworks */, A10000000000000000000013 /* Resources */); buildRules = (); dependencies = (); name = Relaycast; packageProductDependencies = (A10000000000000000000402 /* GoogleCastDynamic */, A10000000000000000000405 /* SMBClient */, A10000000000000000000408 /* Citadel */, A10000000000000000000411 /* NIOSSH */,); productName = Relaycast; productReference = A10000000000000000000005 /* Relaycast.app */; productType = "com.apple.product-type.application"; };
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A10000000000000000000014 /* Project object */ = {isa = PBXProject; attributes = { LastUpgradeCheck = 2600; TargetAttributes = { A10000000000000000000010 = { CreatedOnToolsVersion = 16.0; }; }; }; buildConfigurationList = A10000000000000000000015 /* Build configuration list for PBXProject \"Relaycast\" */; compatibilityVersion = "Xcode 14.0"; developmentRegion = en; hasScannedForEncodings = 0; knownRegions = (en, es, Base,); mainGroup = A10000000000000000000007; packageReferences = (A10000000000000000000401 /* XCRemoteSwiftPackageReference "google-cast-ios-sdk" */, A10000000000000000000404 /* XCRemoteSwiftPackageReference "SMBClient" */, A10000000000000000000407 /* XCRemoteSwiftPackageReference "Citadel" */, A10000000000000000000410 /* XCRemoteSwiftPackageReference "swift-nio-ssh" */,); productRefGroup = A10000000000000000000009 /* Products */; projectDirPath = ""; projectRoot = ""; targets = (A10000000000000000000010 /* Relaycast */,); };
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A10000000000000000000013 /* Resources */ = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (A10000000000000000000313 /* PrivacyInfo.xcprivacy in Resources */, A10000000000000000000020 /* Assets.xcassets in Resources */, A10000000000000000000311 /* Localizable.xcstrings in Resources */, A10000000000000000000312 /* InfoPlist.xcstrings in Resources */,); runOnlyForDeploymentPostprocessing = 0; };
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A10000000000000000000012 /* Sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (A10000000000000000000101 /* RelaycastApp.swift in Sources */, A10000000000000000000102 /* Models.swift in Sources */, A10000000000000000000103 /* RelayClient.swift in Sources */, A10000000000000000000104 /* ProfileStore.swift in Sources */, A10000000000000000000105 /* SharedViews.swift in Sources */, A10000000000000000000106 /* CatalogScreens.swift in Sources */, A10000000000000000000107 /* EpisodesScreen.swift in Sources */, A10000000000000000000108 /* HistoryScreen.swift in Sources */, A10000000000000000000109 /* SettingsScreen.swift in Sources */, A10000000000000000000110 /* Player.swift in Sources */, A10000000000000000000112 /* Downloads.swift in Sources */, A10000000000000000000113 /* ReleaseNotifications.swift in Sources */, A10000000000000000000114 /* RemoteControl.swift in Sources */, A10000000000000000000115 /* TVNowPlaying.swift in Sources */, A10000000000000000000116 /* IdentityTransfer.swift in Sources */, A10000000000000000000117 /* Cast.swift in Sources */, A10000000000000000000119 /* MediaSources.swift in Sources */, A10000000000000000000120 /* SourcesScreen.swift in Sources */, A10000000000000000000118 /* SetupAssistant.swift in Sources */,); runOnlyForDeploymentPostprocessing = 0; };
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		A10000000000000000000016 /* Debug */ = {isa = XCBuildConfiguration; buildSettings = { ALWAYS_SEARCH_USER_PATHS = NO; CLANG_ENABLE_MODULES = YES; CLANG_ENABLE_OBJC_ARC = YES; DEBUG_INFORMATION_FORMAT = dwarf; GCC_C_LANGUAGE_STANDARD = gnu17; GCC_NO_COMMON_BLOCKS = YES; GCC_WARN_64_TO_32_BIT_CONVERSION = YES; GCC_WARN_UNDECLARED_SELECTOR = YES; IPHONEOS_DEPLOYMENT_TARGET = 26.0; SDKROOT = iphoneos; SWIFT_VERSION = 5.0; }; name = Debug; };
+		A10000000000000000000017 /* Release */ = {isa = XCBuildConfiguration; buildSettings = { ALWAYS_SEARCH_USER_PATHS = NO; CLANG_ENABLE_MODULES = YES; CLANG_ENABLE_OBJC_ARC = YES; DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym"; GCC_C_LANGUAGE_STANDARD = gnu17; GCC_NO_COMMON_BLOCKS = YES; GCC_WARN_64_TO_32_BIT_CONVERSION = YES; GCC_WARN_UNDECLARED_SELECTOR = YES; IPHONEOS_DEPLOYMENT_TARGET = 26.0; SDKROOT = iphoneos; SWIFT_COMPILATION_MODE = wholemodule; SWIFT_OPTIMIZATION_LEVEL = "-O"; SWIFT_VERSION = 5.0; }; name = Release; };
+		A10000000000000000000018 /* Debug */ = {isa = XCBuildConfiguration; buildSettings = { ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon; ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO; CODE_SIGN_STYLE = Automatic; CURRENT_PROJECT_VERSION = 1; GENERATE_INFOPLIST_FILE = NO; INFOPLIST_FILE = Info.plist; LD_RUNPATH_SEARCH_PATHS = ("$(inherited)", "@executable_path/Frameworks", ); MARKETING_VERSION = 0.5.0; PRODUCT_BUNDLE_IDENTIFIER = net.silvara.relaycast; PRODUCT_NAME = "$(TARGET_NAME)"; TARGETED_DEVICE_FAMILY = "1,2"; }; name = Debug; };
+		A10000000000000000000019 /* Release */ = {isa = XCBuildConfiguration; buildSettings = { ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon; ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO; CODE_SIGN_STYLE = Automatic; CURRENT_PROJECT_VERSION = 1; GENERATE_INFOPLIST_FILE = NO; INFOPLIST_FILE = Info.plist; LD_RUNPATH_SEARCH_PATHS = ("$(inherited)", "@executable_path/Frameworks", ); MARKETING_VERSION = 0.5.0; PRODUCT_BUNDLE_IDENTIFIER = net.silvara.relaycast; PRODUCT_NAME = "$(TARGET_NAME)"; TARGETED_DEVICE_FAMILY = "1,2"; }; name = Release; };
+/* End XCBuildConfiguration section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A10000000000000000000401 /* XCRemoteSwiftPackageReference "google-cast-ios-sdk" */ = {isa = XCRemoteSwiftPackageReference; repositoryURL = "https://github.com/googlecast/google-cast-ios-sdk"; requirement = {kind = exactVersion; version = 4.8.6; }; };
+		A10000000000000000000404 /* XCRemoteSwiftPackageReference "SMBClient" */ = {isa = XCRemoteSwiftPackageReference; repositoryURL = "https://github.com/kishikawakatsumi/SMBClient"; requirement = {kind = upToNextMinorVersion; minimumVersion = 0.3.1; }; };
+		A10000000000000000000407 /* XCRemoteSwiftPackageReference "Citadel" */ = {isa = XCRemoteSwiftPackageReference; repositoryURL = "https://github.com/orlandos-nl/Citadel"; requirement = {kind = upToNextMinorVersion; minimumVersion = 0.12.1; }; };
+		A10000000000000000000410 /* XCRemoteSwiftPackageReference "swift-nio-ssh" */ = {isa = XCRemoteSwiftPackageReference; repositoryURL = "https://github.com/Wellz26/swift-nio-ssh.git"; requirement = {kind = upToNextMinorVersion; minimumVersion = 0.3.4; }; };
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A10000000000000000000402 /* GoogleCastDynamic */ = {isa = XCSwiftPackageProductDependency; package = A10000000000000000000401 /* XCRemoteSwiftPackageReference "google-cast-ios-sdk" */; productName = GoogleCastDynamic; };
+		A10000000000000000000405 /* SMBClient */ = {isa = XCSwiftPackageProductDependency; package = A10000000000000000000404 /* XCRemoteSwiftPackageReference "SMBClient" */; productName = SMBClient; };
+		A10000000000000000000408 /* Citadel */ = {isa = XCSwiftPackageProductDependency; package = A10000000000000000000407 /* XCRemoteSwiftPackageReference "Citadel" */; productName = Citadel; };
+		A10000000000000000000411 /* NIOSSH */ = {isa = XCSwiftPackageProductDependency; package = A10000000000000000000410 /* XCRemoteSwiftPackageReference "swift-nio-ssh" */; productName = NIOSSH; };
+/* End XCSwiftPackageProductDependency section */
+
+/* Begin XCConfigurationList section */
+		A10000000000000000000011 /* Build configuration list for PBXNativeTarget \"Relaycast\" */ = {isa = XCConfigurationList; buildConfigurations = (A10000000000000000000018 /* Debug */, A10000000000000000000019 /* Release */,); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+		A10000000000000000000015 /* Build configuration list for PBXProject \"Relaycast\" */ = {isa = XCConfigurationList; buildConfigurations = (A10000000000000000000016 /* Debug */, A10000000000000000000017 /* Release */,); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+/* End XCConfigurationList section */
+	};
+	rootObject = A10000000000000000000014 /* Project object */;
+}

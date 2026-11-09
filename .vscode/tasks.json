@@ -1,0 +1,18 @@
+{
+  "version": "2.0.0",
+  "windows": { "options": { "shell": { "executable": "powershell.exe", "args": ["-NoProfile", "-Command"] } } },
+  "tasks": [
+    { "label": "Relay: instalar dependencias", "type": "shell", "command": "npm ci", "options": { "cwd": "${workspaceFolder}/server" }, "problemMatcher": [] },
+    { "label": "Relay: ejecutar", "type": "shell", "command": "npm start", "options": { "cwd": "${workspaceFolder}/server" }, "problemMatcher": [] },
+    { "label": "Relay: pruebas", "type": "shell", "command": "npm test", "options": { "cwd": "${workspaceFolder}/server" }, "problemMatcher": [] },
+    { "label": "Relay: auditar dependencias", "type": "shell", "command": "npm audit --omit=dev", "options": { "cwd": "${workspaceFolder}/server" }, "problemMatcher": [] },
+    { "label": "Versión: mostrar actual", "type": "shell", "command": "node scripts/version.mjs current", "problemMatcher": [] },
+    { "label": "Versión: subir parche", "type": "shell", "command": "node scripts/version.mjs bump patch", "problemMatcher": [] },
+    { "label": "Versión: subir menor", "type": "shell", "command": "node scripts/version.mjs bump minor", "problemMatcher": [] },
+    { "label": "Versión: subir mayor", "type": "shell", "command": "node scripts/version.mjs bump major", "problemMatcher": [] },
+    { "label": "Versión: sincronizar proyectos", "type": "shell", "command": "node scripts/version.mjs sync", "problemMatcher": [] },
+    { "label": "Git: probar versionamiento", "type": "shell", "command": "node scripts/test-versioning.mjs", "problemMatcher": [] },
+    { "label": "Git: activar hook de version", "type": "shell", "command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File '${workspaceFolder}/scripts/install-hooks.ps1'", "problemMatcher": [] },
+    { "label": "Git: publicar commits y releases", "type": "shell", "command": "git push --follow-tags origin HEAD", "problemMatcher": [] }
+  ]
+}

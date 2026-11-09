@@ -1,0 +1,60 @@
+# Weekly update pull requests, grouped per ecosystem so each week is one PR
+# per area. A version must be out for a week before it is proposed. Merging
+# a PR does not publish anything: releases come from version tags (see
+# README, "Versiones y releases"). The iOS app's Swift packages (Google
+# Cast SDK) live in the Xcode project, which Dependabot does not read.
+version: 2
+updates:
+  # Workflow actions are pinned by commit SHA with the version in a comment;
+  # Dependabot updates both.
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
+    commit-message:
+      prefix: ci
+    groups:
+      actions:
+        patterns: ['*']
+
+  # Android TV and phone app: the version catalog, the plugins and the
+  # Gradle wrapper.
+  - package-ecosystem: gradle
+    directory: /android
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
+    commit-message:
+      prefix: chore(android)
+    groups:
+      android:
+        patterns: ['*']
+
+  # Server.
+  - package-ecosystem: npm
+    directory: /server
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
+    commit-message:
+      prefix: chore(server)
+    groups:
+      server:
+        patterns: ['*']
+
+  # Companion (Windows installer).
+  - package-ecosystem: npm
+    directory: /companion
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
+    commit-message:
+      prefix: chore(companion)
+    groups:
+      companion:
+        patterns: ['*']

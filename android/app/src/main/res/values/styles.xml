@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.Relaycast" parent="android:style/Theme.DeviceDefault.NoActionBar">
+        <item name="android:windowBackground">@drawable/launch_background</item>
+        <item name="android:statusBarColor">#0B0B12</item>
+        <item name="android:navigationBarColor">#0B0B12</item>
+    </style>
+</resources>

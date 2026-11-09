@@ -1,0 +1,13 @@
+Relaycast
+Copyright 2026 Roger Silva
+
+This product is licensed under the Apache License, Version 2.0 (LICENSE).
+
+It uses and distributes third-party software under its own licenses; see
+THIRD_PARTY_NOTICES.md. In particular, the Windows installer carries FFmpeg
+(ffmpeg.exe and ffprobe.exe), licensed under the GNU General Public License
+version 3, as separate programs.
+
+"Relaycast" and its icon identify this project. As section 6 of the license
+says, the license does not grant permission to use them, except as needed to
+describe where the work comes from.

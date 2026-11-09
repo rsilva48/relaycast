@@ -1,0 +1,10 @@
+{
+  "name": "relaycast-server",
+  "version": "0.5.0",
+  "license": "Apache-2.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=24.0.0" },
+  "scripts": { "start": "node server.mjs", "test": "node --test" },
+  "dependencies": {}
+}

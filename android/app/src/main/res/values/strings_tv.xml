@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Android TV screens and the code shared with the phone (English; Spanish in values-es). -->
+<resources>
+    <!-- Common -->
+    <string name="cancel">Cancel</string>
+    <string name="close">Close</string>
+    <string name="done">Done</string>
+    <string name="retry">Retry</string>
+    <string name="remove">Remove</string>
+    <string name="not_now">Not now</string>
+    <string name="search">Search</string>
+    <string name="loading">Loading…</string>
+    <string name="sub_and_dub">Sub and Dub</string>
+    <string name="tab_continue">Continue</string>
+    <string name="tab_recent">Recent</string>
+    <string name="episode_number">Episode %1$d</string>
+    <string name="default_profile_name">Profile</string>
+
+    <!-- Relay errors -->
+    <string name="error_unreadable_reply">The relay sent a reply the app could not read. Is it up to date?</string>
+    <string name="error_invalid_relay_url">The relay address is not valid.</string>
+    <string name="error_offline">No internet connection.</string>
+    <string name="error_unreachable">Could not connect to the relay. Check that it is on and reachable.</string>
+    <string name="error_admin_token_invalid">The administrator token is not valid for this relay.</string>
+    <string name="error_identity_required">The relay requires a valid identity. Link this profile again.</string>
+    <string name="error_http">The relay answered HTTP %1$d.</string>
+    <string name="history_load_failed">Could not load the history. Check the connection to the relay.</string>
+    <string name="no_servers">Episode %1$d has no servers.</string>
+    <string name="open_episode_failed_short">Could not open episode %1$d.</string>
+
+    <!-- Catalog filters -->
+    <string name="filters">Filters</string>
+    <string name="filters_count">Filters (%1$d)</string>
+    <string name="apply">Apply</string>
+    <string name="clear">Clear</string>
+    <string name="filters_hint_tv">You can pick several options in each filter: series that match any of them are shown.</string>
+    <string name="filter_genre">Genre</string>
+    <string name="filter_season">Season</string>
+    <string name="filter_year">Year</string>
+    <string name="filter_status">Status</string>
+    <string name="filter_type">Type</string>
+    <string name="filter_source">Source</string>
+    <string name="filter_rating">Rating</string>
+    <string name="filter_episodes">Episodes</string>
+    <string name="filter_min_score">Minimum score</string>
+    <string name="filter_sort">Sort by</string>
+    <string name="filter_any">Any</string>
+    <string name="filter_sort_default">Default</string>
+    <string name="filters_summary_episodes">%1$s episodes</string>
+    <string name="episodes_single">1 (movie or special)</string>
+    <string name="episodes_range">%1$d to %2$d</string>
+    <string name="episodes_at_least">%1$d or more</string>
+    <string name="season_winter">Winter</string>
+    <string name="season_spring">Spring</string>
+    <string name="season_summer">Summer</string>
+    <string name="season_fall">Fall</string>
+    <string name="status_airing">Airing</string>
+    <string name="status_finished">Finished</string>
+    <string name="status_upcoming">Upcoming</string>
+
+    <!-- Home, Continue, catalog and series -->
+    <string name="profile_button">Profile: %1$s</string>
+    <string name="startup_preparing">Preparing your library</string>
+    <string name="continue_new_episodes">New episodes</string>
+    <string name="continue_in_progress">In progress</string>
+    <string name="continue_up_to_date">Up to date</string>
+    <string name="continue_up_to_date_footer">These move to “New episodes” when the next episode is out in Sub or Dub, whichever you were watching.</string>
+    <string name="continue_completed">Completed</string>
+    <string name="continue_empty_tv">Series you watch on this profile (here or on the phone) will appear here.</string>
+    <string name="continue_remove_note_tv">Removing it from Continue also removes it on the phone and on the other TVs of this profile.</string>
+    <string name="open">Open</string>
+    <string name="remove_from_continue">Remove from Continue</string>
+    <string name="search_placeholder_tv">Series title (optional with filters)</string>
+    <string name="search_prompt_tv">Pick filters, type a title or both, and press Search.</string>
+    <string name="no_results_tv">No results.</string>
+    <string name="preparing_episode">Preparing episode %1$d…</string>
+    <string name="continue_episode_at">Continue episode %1$d · %2$s</string>
+    <string name="watch_episode_next">Watch episode %1$d · next</string>
+    <string name="start_with_episode">Start with episode %1$d</string>
+    <string name="up_to_date_watched">You\'re up to date: you watched episode %1$d.</string>
+    <string name="watched_until">Watched until %1$s</string>
+    <string name="watched">Watched</string>
+    <string name="not_yet_in">No %1$s yet</string>
+    <string name="loading_episodes">Loading episodes…</string>
+    <string name="seasons_position">Seasons and extras · %1$d of %2$d</string>
+    <string name="seasons_count">Seasons and extras · %1$d</string>
+    <plurals name="episode_count_text">
+        <item quantity="one">%1$s episode</item>
+        <item quantity="other">%1$s episodes</item>
+    </plurals>
+    <string name="state_in_progress">Episode %1$d · %2$s</string>
+    <string name="state_new_one">New: episode %1$d</string>
+    <string name="state_new_many">%1$d new episodes from episode %2$d</string>
+    <string name="state_next_season">New season: %1$s</string>
+    <string name="state_caught_up_next">Up to date · episode %1$d · next: %2$s</string>
+    <string name="state_caught_up">Up to date · watched episode %1$d</string>
+    <plurals name="state_completed">
+        <item quantity="one">Completed · %1$d episode</item>
+        <item quantity="other">Completed · %1$d episodes</item>
+    </plurals>
+
+    <!-- Relay setup, profiles and pairing -->
+    <string name="relay_address_invalid">Type the relay\'s domain or IP, for example relay.mydomain.com or 192.168.1.20:8787.</string>
+    <string name="relay_bad_health">The relay did not answer correctly.</string>
+    <string name="relay_placeholder">relay.mydomain.com</string>
+    <string name="setup_title">Set up your relay</string>
+    <string name="setup_text_tv">It\'s the same address you use in the iPhone app. Then each person links their profile by scanning a code with their phone.</string>
+    <string name="testing">Testing…</string>
+    <string name="test_and_save">Test and save</string>
+    <string name="who_is_watching">Who\'s watching?</string>
+    <string name="create_profile">Create profile</string>
+    <string name="link_profile">Link profile</string>
+    <string name="profiles_hint">Hold a profile to take it to the phone or remove it. Relay: %1$s</string>
+    <string name="change_relay">Change relay</string>
+    <string name="take_to_phone">Take to phone</string>
+    <string name="remove_profile_title">Remove the profile “%1$s” from this TV?</string>
+    <string name="remove_profile_text">Its history stays on the relay; you can link it again with the phone.</string>
+    <string name="create_profile_unsupported">This relay can\'t create profiles yet. Update it to the latest version.</string>
+    <string name="create_profile_text">A new profile has its own Continue Watching and preferences. You can then take it to that person\'s phone with a QR code.</string>
+    <string name="profile_name">Profile name</string>
+    <string name="creating">Creating…</string>
+    <string name="create">Create</string>
+    <string name="transfer_title">Take “%1$s” to the phone</string>
+    <string name="transfer_warning">The code contains this profile\'s identity: whoever scans it gets access to its history and preferences. Show it only to that person\'s phone.</string>
+    <string name="show_code">Show code</string>
+    <string name="profile_qr_description">Profile QR code</string>
+    <string name="scan_with_app">Scan it with Relaycast</string>
+    <string name="transfer_scan_hint">On the phone, with the camera or in Relaycast › Settings › Scan code. The phone will use the profile “%1$s”.</string>
+    <string name="code_hides">The code hides in a minute.</string>
+    <string name="pairing_qr_description">QR code to link</string>
+    <string name="generating_code">Generating code…</string>
+    <string name="pairing_title">Link a profile</string>
+    <string name="pairing_step1">1. Scan the code with any phone\'s camera.</string>
+    <string name="pairing_step2">2. On the page that opens, choose “Open in the app” or paste a token. The first time, you can create the identity with the relay\'s administrator token.</string>
+    <string name="pairing_step3">3. This screen continues by itself.</string>
+    <string name="pairing_note">The profile uses that identity: the same Continue Watching and the same preferences. The code changes every 10 minutes.</string>
+
+    <!-- Special access (TV Settings) -->
+    <string name="special_access_hint">In Settings › “%1$s”, turn on Relaycast and return to the app.</string>
+    <string name="special_access_hint_other_profile">In Settings › “%1$s”, turn on Relaycast and return to the app. If it still isn\'t allowed, this TV has another copy of the app in a second profile (marked with a briefcase): uninstall that copy and try again.</string>
+    <string name="overlay_setting">Display over other apps</string>
+    <string name="open_from_phone">Open from the phone</string>
+    <string name="overlay_explanation">With the app open, the phone can already control it. To also open it while it\'s closed, Android TV needs the “%1$s” permission.</string>
+    <string name="overlay_missing">This TV can\'t open the app from the phone while it\'s closed. With the app open, the phone can still control it.</string>
+    <string name="open_settings">Open Settings</string>
+
+    <!-- Player -->
+    <string name="opening_episode">Opening episode %1$d…</string>
+    <string name="open_episode_failed">Could not open episode %1$d. %2$s</string>
+    <string name="skip_intro">Skip intro</string>
+    <string name="skip_outro">Skip outro</string>
+    <string name="server_failed">Could not play this server (%1$s).</string>
+    <string name="exit">Exit</string>
+    <string name="track_number">Track %1$d</string>
+
+    <!-- Remote control service -->
+    <string name="remote_channel">Control from the phone</string>
+    <string name="remote_notification">Available for control from the phone</string>
+
+    <string name="rename_profile">Rename</string>
+    <string name="save_tv">Save</string>
+    <string name="saving_tv">Saving…</string>
+</resources>

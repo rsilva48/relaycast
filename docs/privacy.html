@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Relaycast: política de privacidad · Privacy policy</title>
+  <meta name="description" content="Política de privacidad de Relaycast: las apps, el Relay Server y el companion para Windows. Relaycast no recoge datos personales.">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f5f5fa; --panel: #ffffff; --line: #dedee8; --text: #1a1a24; --muted: #62627a;
+      --accent: #5a58e8; --accent-text: #ffffff;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root { --bg: #14141a; --panel: #1d1d26; --line: #2c2c38; --text: #ececf2; --muted: #9a9aab; --accent: #6c6bf2; }
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.55 system-ui, "Segoe UI", sans-serif; }
+    main { max-width: 720px; margin: 0 auto; padding: 48px 16px 64px; }
+    h1 { margin: 0 0 8px; font-size: 2rem; letter-spacing: -0.01em; }
+    h2 { margin: 36px 0 8px; font-size: 1.15rem; }
+    h3 { margin: 22px 0 6px; font-size: 1rem; }
+    p { margin: 8px 0; }
+    ul { padding-left: 1.3rem; }
+    li { margin: 6px 0; }
+    a { color: var(--accent); }
+    a:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+    code { background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 1px 6px; font-size: 0.9em; overflow-wrap: anywhere; }
+    .lead { color: var(--muted); font-size: 1.05rem; }
+    .langs { display: flex; gap: 12px; margin: 16px 0 0; }
+    .card { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 18px 22px; margin-top: 24px; }
+    .card p:first-child { margin-top: 0; } .card p:last-child { margin-bottom: 0; }
+    hr { border: 0; border-top: 1px solid var(--line); margin: 56px 0 40px; }
+    footer { margin-top: 40px; color: var(--muted); font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Relaycast</h1>
+    <p class="lead">Política de privacidad · Privacy policy</p>
+    <nav class="langs" aria-label="Idioma · Language">
+      <a href="#es" hreflang="es">Español</a>
+      <a href="#en" hreflang="en">English</a>
+    </nav>
+
+    <!-- ───────────────────────────── Español ───────────────────────────── -->
+    <article id="es" lang="es">
+      <h2>Política de privacidad</h2>
+      <p>En vigor desde el 8 de noviembre de 2026.</p>
+
+      <div class="card">
+        <p><strong>En resumen:</strong> El desarrollador de Relaycast no recoge datos personales directamente. Los SDK de terceros se describen abajo. El desarrollador no opera ningún servidor para las apps y no recibe tu información: no hay cuentas en la nube, analítica, publicidad ni seguimiento. Lo que usa Relaycast se guarda en tu dispositivo o en tu propio Relay Server, en tu PC.</p>
+      </div>
+
+      <p>Esta política cubre las apps de Relaycast (iPhone, iPad, Android y Android TV), el Relay Server y el companion para Windows. El responsable es Roger Silva, desarrollador de Relaycast. Para cualquier consulta sobre privacidad, abre una incidencia en <a href="https://github.com/rsilva48/relaycast/issues">github.com/rsilva48/relaycast/issues</a>.</p>
+
+      <h3>Qué es Relaycast</h3>
+      <p>Relaycast reproduce los vídeos que tú guardas: en este dispositivo, en tus carpetas compartidas (SMB), en tus servidores SFTP o WebDAV, en enlaces directos que tú añades o, si quieres, en tu propio Relay Server, que el companion instala en tu PC. Las apps no necesitan ninguna cuenta ni servidor para funcionar. Relaycast no incluye ni ofrece contenido.</p>
+
+      <h3>Datos que se guardan en tu dispositivo</h3>
+      <ul>
+        <li>Tus fuentes: su nombre, su dirección y, si los escribes, el usuario, la contraseña y la clave pública del servidor SSH. Se guardan cifradas y sólo en este dispositivo: en iPhone y iPad, en el Llavero sin sincronizar con iCloud; en Android, cifradas con el Android Keystore. De los archivos y carpetas del dispositivo sólo se guarda el permiso de lectura que concedes al elegirlos.</li>
+        <li>La posición en la que dejaste cada archivo de tus fuentes, para seguir desde ahí.</li>
+        <li>La dirección de tu Relay Server y el token de tu cuenta, si lo usas. En iPhone y iPad el token va en el Llavero; si tienes activado el Llavero de iCloud, Apple lo sincroniza entre tus dispositivos. En Android se guarda cifrado con el Android Keystore.</li>
+        <li>Tus preferencias (idioma de subtítulos, reproducción, perfil elegido), el progreso reciente y los episodios que descargues para verlos sin conexión.</li>
+      </ul>
+      <p>Estos datos no salen del dispositivo, salvo hacia el servidor al que pertenecen (cada fuente recibe sólo sus propias credenciales; tu Relay Server, tu token) o en las copias de seguridad del sistema (iCloud o Google), si las tienes activadas. Las contraseñas de las fuentes no se incluyen en ellas de forma utilizable.</p>
+
+      <h3>Datos que se guardan en tu Relay Server</h3>
+      <ul>
+        <li>Las cuentas: el servidor sólo guarda un hash con salt de cada token, nunca el token.</li>
+        <li>El perfil de cada cuenta: nombre, foto o avatar y, si lo escribes, un correo.</li>
+        <li>El historial y el progreso, las preferencias y las TVs vinculadas (con su estado mientras están conectadas).</li>
+        <li>El catálogo que sale de tus carpetas y los metadatos que edites en el companion.</li>
+      </ul>
+      <p>El Relay Server corre en tu PC (o en el equipo que elijas) y no se comunica con servicios de terceros. El desarrollador no tiene acceso a él. Si compartes tu servidor con otras personas, quien lo administra decide sobre esos datos. El companion guarda su configuración y los datos del servidor en <code>%APPDATA%\Relaycast</code>, y no envía nada a internet.</p>
+
+      <h3>Servicios de terceros</h3>
+      <p>El SDK de Google Cast se inicializa al abrir la app y puede buscar dispositivos en la red local. Los demás servicios intervienen al usar la función correspondiente:</p>
+      <ul>
+        <li><strong>Google Cast</strong> (iPhone, iPad y Android): para buscar dispositivos Cast en tu Wi‑Fi y enviarles un vídeo, la app usa el SDK de Google Cast. El SDK 4.8.6 recoge diagnósticos por defecto. Su manifiesto declara identificadores de dispositivo, otros diagnósticos e interacción con el producto para analítica y funcionalidad, sin vincularlos a tu identidad ni usarlos para seguimiento; algunos datos dependen de las funciones habilitadas. La etiqueta de privacidad de esa versión también enumera ubicación aproximada y rendimiento. Google trata estos datos según su <a href="https://policies.google.com/privacy">política de privacidad</a>. El dispositivo Cast abre el vídeo desde tu servidor con un enlace temporal y nunca recibe tu token.</li>
+        <li><strong>Lectura de códigos QR en Android</strong>: usa el escáner de códigos y ML Kit de Google Play services. Las imágenes se analizan en el dispositivo; Google Play services puede descargar el módulo del escáner y enviar a Google datos de diagnóstico.</li>
+        <li><strong>Traducción en Android</strong>: los subtítulos se traducen en el dispositivo con ML Kit. La primera vez se descarga el modelo del idioma desde Google; el texto no sale del dispositivo. Traducir la sinopsis la envía a la app de traducción que elijas.</li>
+        <li><strong>En iPhone y iPad</strong>: los códigos QR se leen en el dispositivo (VisionKit) y la sinopsis se traduce con el framework Translation de Apple, también en el dispositivo. Apple descarga los idiomas que hagan falta.</li>
+        <li><strong>Tiendas de apps</strong>: App Store y Google Play tratan los datos de la descarga y, si lo permites en los ajustes del sistema, comparten con el desarrollador informes de fallos y estadísticas anónimas, según sus propias políticas.</li>
+      </ul>
+
+      <h3>Permisos</h3>
+      <ul>
+        <li><strong>Cámara</strong>: sólo para leer los códigos QR de tu servidor, de tu perfil o de una TV.</li>
+        <li><strong>Red local</strong>: para llegar a tus fuentes de la red (carpetas compartidas, servidores SFTP y WebDAV), a tu Relay Server y a los dispositivos Google Cast de tu red.</li>
+        <li><strong>Archivos</strong>: con el selector del sistema, la app sólo puede leer los archivos o carpetas que elijas como fuente; puedes quitar ese permiso quitando la fuente.</li>
+        <li><strong>Fotos</strong>: con el selector del sistema, para elegir la foto de tu perfil o una imagen con un código QR. La app sólo recibe la imagen que elijas.</li>
+        <li><strong>Notificaciones</strong> (opcional): avisos de episodios nuevos de tu biblioteca y progreso de las descargas. Los genera el propio dispositivo consultando tu servidor; no hay notificaciones push desde ningún servidor del desarrollador.</li>
+        <li><strong>Mostrar sobre otras apps</strong> (Android TV, opcional): para que el teléfono pueda abrir la app de la TV.</li>
+      </ul>
+
+      <h3>Seguridad</h3>
+      <p>Las apps se conectan directamente a tus fuentes y a tu servidor, sin pasar por ningún servidor del desarrollador. SFTP sólo se conecta a un servidor que se identifica con la clave pública que guardaste. Con WebDAV o enlaces sin HTTPS, la contraseña viaja sin cifrar: úsalos así sólo dentro de tu red. En tu red local, el Relay Server puede usar HTTP; si publicas el servidor fuera de casa, usa HTTPS. Quien tenga el código de configuración del companion puede crear cuentas en tu servidor: compártelo sólo con quien deba tenerlo.</p>
+
+      <h3>Tus datos y tu control</h3>
+      <p>Tus datos están en tu dispositivo y en tu servidor, así que los controlas tú. Desinstalar la app borra sus datos del dispositivo (en iPhone y iPad el token puede quedar en el Llavero hasta que lo borres). Para borrar todos los datos del servidor (cuentas, perfiles, historial y metadatos), cierra el companion y elimina la carpeta <code>%APPDATA%\Relaycast</code>; tus vídeos no se tocan.</p>
+
+      <h3>Menores</h3>
+      <p>Relaycast no está dirigida a menores de 13 años y el desarrollador no recoge directamente datos personales.</p>
+
+      <h3>Este sitio web</h3>
+      <p>Estas páginas se publican con GitHub Pages; GitHub puede registrar datos técnicos de las visitas según su <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement">declaración de privacidad</a>. El botón de descarga consulta desde tu navegador la API pública de GitHub para encontrar el último instalador.</p>
+
+      <h3>Cambios</h3>
+      <p>Si esta política cambia, se actualizará la fecha de arriba. Su historial completo está en el <a href="https://github.com/rsilva48/relaycast/commits/main/docs/privacy.html">repositorio</a>.</p>
+    </article>
+
+    <hr>
+
+    <!-- ───────────────────────────── English ───────────────────────────── -->
+    <article id="en" lang="en">
+      <h2>Privacy policy</h2>
+      <p>Effective November 8, 2026.</p>
+
+      <div class="card">
+        <p><strong>In short:</strong> The Relaycast developer does not directly collect personal data. Third-party SDKs are described below. The developer runs no server for the apps and receives none of your information: there are no cloud accounts, analytics, ads or tracking. What Relaycast uses is stored on your device or on your own Relay Server, on your PC.</p>
+      </div>
+
+      <p>This policy covers the Relaycast apps (iPhone, iPad, Android and Android TV), the Relay Server and the Windows companion. The data controller is Roger Silva, Relaycast's developer. For any privacy question, open an issue at <a href="https://github.com/rsilva48/relaycast/issues">github.com/rsilva48/relaycast/issues</a>.</p>
+
+      <h3>What Relaycast is</h3>
+      <p>Relaycast plays the videos you keep: on this device, in your shared folders (SMB), on your SFTP or WebDAV servers, at direct links you add or, if you want, on your own Relay Server, which the companion installs on your PC. The apps need no account or server to work. Relaycast does not include or provide any content.</p>
+
+      <h3>Data stored on your device</h3>
+      <ul>
+        <li>Your sources: their name, address and, if you enter them, the username, password and SSH server public key. They are stored encrypted and only on this device: on iPhone and iPad in the Keychain, not synced with iCloud; on Android encrypted with the Android Keystore. For files and folders on the device, only the read permission you grant when choosing them is kept.</li>
+        <li>Where you left each file of your sources, to continue from there.</li>
+        <li>Your Relay Server's address and your account token, if you use one. On iPhone and iPad the token is kept in the Keychain; if iCloud Keychain is on, Apple syncs it across your devices. On Android it is encrypted with the Android Keystore.</li>
+        <li>Your preferences (subtitle language, playback, chosen profile), recent progress, and the episodes you download to watch offline.</li>
+      </ul>
+      <p>This data never leaves the device except to the server it belongs to (each source receives only its own credentials; your Relay Server, your token), or in system backups (iCloud or Google) if you have them on. Source passwords are not included in them in a usable form.</p>
+
+      <h3>Data stored on your Relay Server</h3>
+      <ul>
+        <li>Accounts: the server keeps only a salted hash of each token, never the token itself.</li>
+        <li>Each account's profile: name, photo or avatar and, if you enter one, an email address.</li>
+        <li>Watch history and progress, preferences, and linked TVs (with their status while connected).</li>
+        <li>The catalog built from your folders and the metadata you edit in the companion.</li>
+      </ul>
+      <p>The Relay Server runs on your PC (or a machine you choose) and does not talk to any third-party service. The developer has no access to it. If you share your server with other people, whoever runs it decides about that data. The companion stores its settings and the server's data in <code>%APPDATA%\Relaycast</code> and sends nothing to the internet.</p>
+
+      <h3>Third-party services</h3>
+      <p>The Google Cast SDK initializes when the app opens and may discover devices on the local network. The other services are involved when you use the matching feature:</p>
+      <ul>
+        <li><strong>Google Cast</strong> (iPhone, iPad and Android): to find Cast devices on your Wi‑Fi and send them a video, the app uses the Google Cast SDK. SDK 4.8.6 collects diagnostics by default. Its manifest declares device identifiers, other diagnostics and product interaction for analytics and app functionality, without linking them to your identity or using them for tracking; some data depends on enabled features. That version’s privacy label also lists coarse location and performance data. Google processes this data under its <a href="https://policies.google.com/privacy">privacy policy</a>. The Cast device opens the video from your server through a temporary link and never receives your token.</li>
+        <li><strong>QR code scanning on Android</strong>: uses Google Play services' code scanner and ML Kit. Images are analyzed on the device; Google Play services may download the scanner module and send diagnostic data to Google.</li>
+        <li><strong>Translation on Android</strong>: subtitles are translated on the device with ML Kit. The first time, the language model is downloaded from Google; the text never leaves the device. Translating a synopsis sends it to the translation app you choose.</li>
+        <li><strong>On iPhone and iPad</strong>: QR codes are read on the device (VisionKit) and synopses are translated with Apple's Translation framework, also on the device. Apple downloads the languages it needs.</li>
+        <li><strong>App stores</strong>: the App Store and Google Play process the data of your download and, if you allow it in the system settings, share crash reports and anonymous statistics with the developer, under their own policies.</li>
+      </ul>
+
+      <h3>Permissions</h3>
+      <ul>
+        <li><strong>Camera</strong>: only to read the QR codes of your server, your profile or a TV.</li>
+        <li><strong>Local network</strong>: to reach your network sources (shared folders, SFTP and WebDAV servers), your Relay Server and the Google Cast devices on your network.</li>
+        <li><strong>Files</strong>: through the system picker, the app can only read the files or folders you choose as a source; removing the source removes that permission.</li>
+        <li><strong>Photos</strong>: through the system picker, to choose your profile picture or an image containing a QR code. The app only receives the image you pick.</li>
+        <li><strong>Notifications</strong> (optional): new episodes in your library and download progress. The device itself creates them by checking your server; there are no push notifications from any developer server.</li>
+        <li><strong>Display over other apps</strong> (Android TV, optional): lets your phone open the TV app.</li>
+      </ul>
+
+      <h3>Security</h3>
+      <p>The apps connect directly to your sources and your server, never through a developer server. SFTP only connects to a server that identifies itself with the public key you saved. With WebDAV or links without HTTPS the password travels unencrypted: use them that way only inside your network. On your home network the Relay Server may use HTTP; if you expose the server outside your home, use HTTPS. Anyone with the companion's setup code can create accounts on your server: share it only with people who should have it.</p>
+
+      <h3>Your data, your control</h3>
+      <p>Your data lives on your device and your server, so you control it. Uninstalling the app deletes its data from the device (on iPhone and iPad the token may remain in the Keychain until you delete it). To delete all of the server's data (accounts, profiles, history and metadata), quit the companion and remove the <code>%APPDATA%\Relaycast</code> folder; your videos are left untouched.</p>
+
+      <h3>Children</h3>
+      <p>Relaycast is not directed at children under 13 and the developer does not directly collect personal data.</p>
+
+      <h3>This website</h3>
+      <p>These pages are hosted on GitHub Pages; GitHub may log technical data about visits under its <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement">privacy statement</a>. The download button queries GitHub's public API from your browser to find the latest installer.</p>
+
+      <h3>Changes</h3>
+      <p>If this policy changes, the date above will be updated. Its full history is in the <a href="https://github.com/rsilva48/relaycast/commits/main/docs/privacy.html">repository</a>.</p>
+    </article>
+
+    <footer><a href="./">Relaycast</a> · <a href="https://github.com/rsilva48/relaycast/blob/main/LICENSE">Apache License 2.0</a></footer>
+  </main>
+</body>
+</html>
